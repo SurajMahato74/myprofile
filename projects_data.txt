@@ -1,0 +1,19 @@
+Real Projects List:
+
+1. gwp.nirc.com.np - Government with People WebApp (Company) - Java, Grails, SQL, API - Full Stack Developer
+2. hms.nirc.com.np - HMS Hospital (integrated with IMIS, HIMI, DIS2) (Company) - Core Designer & Lead Developer
+3. rakmina.com - Job Portal CMS (Company - European Client) - Next.js, Django - Lead Full Stack Developer
+4. ktmpost.com - Newspaper Channel (Company) - React, Django, MySQL - Lead Developer
+5. ezeyway.com - E-commerce Platform (Personal) - Website: React, Django | Mobile: Flutter
+6. brandwave.com - Social Media Marketing Website (Personal) - HTML5, CSS3
+7. biratmultiplecollege.edu.np - College Website (TU Affiliated) (Company)
+8. vgcollege.edu.np - Bachelor Level College Website (Company)
+9. biratshikshaniketan.edu.np - School Website (Company)
+10. aarambhafoundation.com - Foundation Website (Company)
+11. neom.com - Diaper Company Website (Company)
+12. school.nirc.com.np - School Management Software (Company)
+13. gadisewa.com - Garage Management Software (Company)
+14. kiceducation.edu.np - Consultancy Website (Company)
+
+
+

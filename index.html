@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suraj Mahato - Developer</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0B0B0E;
+            color: #FFFFFF;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px 20px 40px;
+            width: 100%;
+            position: relative;
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            margin-top: 50px;
+        }
+
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid #1F1F23;
+        }
+
+        .profile-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-info {
+            flex: 1;
+        }
+
+        .profile-name {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .profile-name h1 {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .verified-badge {
+            display: none;
+        }
+
+        .follow-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #EC4899;
+            color: #fff;
+            border: none;
+            padding: 6px 16px;
+            border-radius: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            z-index: 1000;
+            font-size: 0.8rem;
+        }
+
+        .follow-btn:hover {
+            background: #DB2777;
+        }
+
+        .bio {
+            color: #9CA3AF;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .meta-info {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            color: #9CA3AF;
+            font-size: 0.9rem;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .meta-item i {
+            font-size: 16px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 50px;
+            border-bottom: 1px solid #1F1F23;
+            margin: 40px 0 30px;
+            justify-content: center;
+        }
+
+        .tab {
+            padding: 12px 0;
+            color: #9CA3AF;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .tab.active {
+            color: #FFFFFF;
+            border-bottom-color: #EC4899;
+        }
+
+        .tab:hover {
+            color: #FFFFFF;
+        }
+
+        .card {
+            background: #111111;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .card-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .card-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-user {
+            flex: 1;
+        }
+
+        .card-username {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .card-date {
+            color: #9CA3AF;
+            font-size: 0.85rem;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .card-text {
+            color: #9CA3AF;
+            font-size: 0.95rem;
+            text-align: justify;
+        }
+
+        .pinned-badge {
+            background: #1F1F23;
+            color: #9CA3AF;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 15px;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .personal-info-card {
+            background: #111111;
+            padding: 24px;
+            border-radius: 12px;
+        }
+
+        .cv-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .cv-timeline {
+            position: relative;
+            padding-left: 20px;
+            border-left: 2px solid #1F1F23;
+        }
+
+        .cv-item {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .cv-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 0;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #EC4899;
+        }
+
+        .cv-year {
+            display: inline-block;
+            background: #1F1F23;
+            color: #9CA3AF;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+        }
+
+        .cv-item h5 {
+            margin: 10px 0 5px;
+            font-size: 1.1rem;
+        }
+
+        .skills-grid-cv {
+            display: grid;
+            gap: 20px;
+        }
+
+        .skill-item {
+            color: #9CA3AF;
+            font-size: 0.9rem;
+        }
+
+        .skill-bar {
+            height: 8px;
+            background: #1F1F23;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            transition: width 0.3s;
+        }
+
+        .tab-content {
+            animation: fadeIn 0.3s;
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .project-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .project-item {
+            background: #111111;
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            gap: 20px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .project-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(236, 72, 153, 0.2);
+        }
+
+        .project-img {
+            width: 30%;
+            min-width: 200px;
+            max-width: 240px;
+            height: 180px;
+            border-radius: 8px;
+            overflow: hidden;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .project-img::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .project-item:hover .project-img::after {
+            opacity: 1;
+        }
+
+        .project-img-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2.5rem;
+            color: #EC4899;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 1;
+        }
+
+        .project-item:hover .project-img-icon {
+            opacity: 1;
+        }
+
+        .project-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .project-info {
+            flex: 1;
+        }
+
+        .project-info h3 {
+            font-size: 1.3rem;
+            margin: 0;
+        }
+
+        .project-type {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .project-type.company {
+            background: #1F1F23;
+            color: #F59E0B;
+        }
+
+        .project-type.personal {
+            background: #1F1F23;
+            color: #10B981;
+        }
+
+        .tech-badge {
+            background: #1F1F23;
+            color: #9CA3AF;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+        }
+
+        .detail-section {
+            background: #111111;
+            padding: 24px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .detail-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .detail-img {
+            width: 100%;
+            max-width: 100%;
+            height: 300px;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .detail-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .filter-btn {
+            background: #1F1F23;
+            color: #9CA3AF;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .filter-btn:hover {
+            background: #2A2A2E;
+            color: #FFFFFF;
+        }
+
+        .filter-btn.active {
+            background: #EC4899;
+            color: #FFFFFF;
+        }
+
+        .chatbot-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+        }
+
+        .chatbot-button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #EC4899, #DB2777);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(236, 72, 153, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s;
+        }
+
+        .chatbot-button:hover {
+            transform: scale(1.1);
+        }
+
+        .chatbot-button i {
+            font-size: 28px;
+            color: white;
+        }
+
+        .chatbot-window {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            width: 350px;
+            height: 500px;
+            background: #111111;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chatbot-window.active {
+            display: flex;
+        }
+
+        .chatbot-header {
+            background: linear-gradient(135deg, #EC4899, #DB2777);
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chatbot-header h3 {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        .chatbot-close {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 24px;
+        }
+
+        .chatbot-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .chatbot-message {
+            max-width: 80%;
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .chatbot-message.user {
+            background: #EC4899;
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+
+        .chatbot-message.bot {
+            background: #1F1F23;
+            color: #E5E7EB;
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+        }
+
+        .chatbot-input-area {
+            padding: 16px;
+            background: #0B0B0E;
+            display: flex;
+            gap: 8px;
+        }
+
+        .chatbot-input {
+            flex: 1;
+            background: #1F1F23;
+            border: none;
+            padding: 10px 14px;
+            border-radius: 20px;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        .chatbot-input:focus {
+            outline: none;
+            background: #2A2A2E;
+        }
+
+        .chatbot-send {
+            background: #EC4899;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .chatbot-send:hover {
+            background: #DB2777;
+        }
+
+        .chatbot-send i {
+            color: white;
+            font-size: 18px;
+        }
+
+        @media (max-width: 768px) {
+            .chatbot-window {
+                width: calc(100vw - 40px);
+                height: 450px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cv-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-item {
+                flex-direction: column;
+            }
+
+            .project-img {
+                width: 100%;
+                min-width: unset;
+                max-width: 100%;
+                height: 200px;
+            }
+
+            .profile-header {
+                flex-direction: column;
+                text-align: center;
+                position: relative;
+            }
+
+            .profile-avatar {
+                position: relative;
+                margin: 0 auto;
+            }
+
+            .profile-name {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .profile-name h1 {
+                width: 100%;
+                order: -1;
+            }
+
+            .meta-info {
+                justify-content: center;
+            }
+
+            .tabs {
+                gap: 15px;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="follow-btn">Follow</button>
+        <div class="profile-header">
+            <div class="profile-avatar">
+                <img src="suraj.jpg" alt="Suraj Mahato">
+            </div>
+            <div class="profile-info">
+                <div class="profile-name">
+                    <h1>Suraj Mahato</h1>
+                </div>
+                <div class="meta-info">
+                    <div class="meta-item">
+                        <i class='bx bx-briefcase'></i>
+                        <span>Full-Stack Developer</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class='bx bx-map'></i>
+                        <span>Nepal</span>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 15px; margin-top: 10px; justify-content: center;">
+                    <a href="https://linkedin.com" target="_blank" style="color: #9CA3AF; transition: color 0.3s; display: inline-flex; align-items: center;" onmouseover="this.style.color='#EC4899'" onmouseout="this.style.color='#9CA3AF'">
+                        <i class='bx bxl-linkedin' style="font-size: 24px;"></i>
+                    </a>
+                    <a href="https://github.com" target="_blank" style="color: #9CA3AF; transition: color 0.3s; display: inline-flex; align-items: center;" onmouseover="this.style.color='#EC4899'" onmouseout="this.style.color='#9CA3AF'">
+                        <i class='bx bxl-github' style="font-size: 24px;"></i>
+                    </a>
+                    <a href="https://facebook.com" target="_blank" style="color: #9CA3AF; transition: color 0.3s; display: inline-flex; align-items: center;" onmouseover="this.style.color='#EC4899'" onmouseout="this.style.color='#9CA3AF'">
+                        <i class='bx bxl-facebook' style="font-size: 24px;"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <div class="tab active" onclick="showTab('feed')">Feed</div>
+            <div class="tab" onclick="showTab('about')">About</div>
+            <div class="tab" onclick="showTab('projects')">Projects</div>
+        </div>
+
+        <div id="feed" class="tab-content">
+            <div class="card">
+                <span class="pinned-badge"><i class='bx bx-pin'></i> Pinned</span>
+                <div class="card-header">
+                    <div class="card-avatar">
+                        <img src="suraj.jpg" alt="Suraj Mahato">
+                    </div>
+                    <div class="card-user">
+                        <div class="card-username">Suraj Mahato</div>
+                        <div class="card-date">August 19th</div>
+                    </div>
+                </div>
+                <h2 class="card-title">Hello World!</h2>
+                <p class="card-text">I'm a full-stack software developer working primarily with Django, Django REST Framework, and React. My work focuses on building real-world systems such as hospital management platforms, government reporting tools, and election-related data systems. I enjoy working on complex backend logic, relational databases, and applications where accuracy, structure, and scalability matter.</p>
+            </div>
+        </div>
+
+        <div id="about" class="tab-content" style="display:none;">
+            
+            <div class="about-grid">
+                <div class="about-description">
+                    <h3 style="color: #EC4899; margin-bottom: 15px;">Full-Stack Developer</h3>
+                    <p style="color: #9CA3AF; margin-bottom: 15px; text-align: justify;">
+                        I'm a full-stack software developer from Nepal specializing in Django, Django REST Framework, and React. 
+                        I build production-ready systems for hospitals, government workflows, and large data-driven applications, 
+                        with a strong focus on backend architecture, reporting, and real-world constraints.
+                    </p>
+                
+                    
+                    <div class="cv-section" style="margin-top: 30px;">
+                        <h4 style="color: #EC4899; margin-bottom: 20px;">Experience</h4>
+                        <div class="cv-timeline">
+                            <div class="cv-item">
+                                <span class="cv-year">2023 - Present</span>
+                                <h5>Senior Developer</h5>
+                                <p style="color: #EC4899; font-size: 0.9rem;"><a href="https://nirc.com.np" target="_blank" style="color: #EC4899; text-decoration: none;">NIRC</a>, Nepal</p>
+                                <p style="color: #9CA3AF; font-size: 0.85rem;">Building hospital management systems and government reporting platforms with Django and PostgreSQL.</p>
+                            </div>
+                            <div class="cv-item">
+                                <span class="cv-year">2021 - 2023</span>
+                                <h5>Senior Developer</h5>
+                                <p style="color: #EC4899; font-size: 0.9rem;"><a href="https://brandwave.com.np" target="_blank" style="color: #EC4899; text-decoration: none;">Brandwave</a>, Nepal</p>
+                                <p style="color: #9CA3AF; font-size: 0.85rem;">Led technical team and architected scalable solutions for clients.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="personal-info-card">
+                    <h4 style="margin-bottom: 15px; color: #EC4899;">Languages</h4>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; color: #9CA3AF; font-size: 0.9rem; margin-bottom: 20px;">
+                        <div><i class='bx bxl-python' style="color: #EC4899;"></i> Python</div>
+                        <div><i class='bx bxl-java' style="color: #EC4899;"></i> Java</div>
+                        <div><i class='bx bxl-javascript' style="color: #EC4899;"></i> JavaScript</div>
+                        <div><i class='bx bxl-typescript' style="color: #EC4899;"></i> TypeScript</div>
+                        <div><i class='bx bxl-html5' style="color: #EC4899;"></i> HTML5</div>
+                        <div><i class='bx bxl-css3' style="color: #EC4899;"></i> CSS3</div>
+                        <div><i class='bx bx-code-alt' style="color: #EC4899;"></i> Dart</div>
+                    </div>
+                    
+                    <h4 style="margin-bottom: 15px; color: #EC4899;">Frameworks</h4>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; color: #9CA3AF; font-size: 0.9rem; margin-bottom: 20px;">
+                        <div><i class='bx bxl-django' style="color: #EC4899;"></i> Django</div>
+                        <div><i class='bx bx-code-block' style="color: #EC4899;"></i> DRF</div>
+                        <div><i class='bx bx-code-block' style="color: #EC4899;"></i> Grails</div>
+                        <div><i class='bx bxl-react' style="color: #EC4899;"></i> React</div>
+                        <div><i class='bx bxl-flutter' style="color: #EC4899;"></i> Flutter</div>
+                        <div><i class='bx bxl-tailwind-css' style="color: #EC4899;"></i> Tailwind CSS</div>
+                        <div><i class='bx bxl-nodejs' style="color: #EC4899;"></i> Node.js</div>
+                        <div><i class='bx bxl-nodejs' style="color: #EC4899;"></i> Express.js</div>
+                        <div><i class='bx bx-code-alt' style="color: #EC4899;"></i> REST API</div>
+                    </div>
+                    
+                    <h4 style="margin-bottom: 15px; color: #EC4899;">Database</h4>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; color: #9CA3AF; font-size: 0.9rem; margin-bottom: 20px;">
+                        <div><i class='bx bxl-postgresql' style="color: #EC4899;"></i> PostgreSQL</div>
+                        <div><i class='bx bx-data' style="color: #EC4899;"></i> MariaDB</div>
+                        <div><i class='bx bxl-mongodb' style="color: #EC4899;"></i> MongoDB</div>
+                    </div>
+                    
+                    <h4 style="margin-bottom: 15px; color: #EC4899;">Tools</h4>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; color: #9CA3AF; font-size: 0.9rem;">
+                        <div><i class='bx bxl-git' style="color: #EC4899;"></i> Git</div>
+                        <div><i class='bx bxl-visual-studio' style="color: #EC4899;"></i> VS Code</div>
+                        <div><i class='bx bxl-tux' style="color: #EC4899;"></i> Linux</div>
+                        <div><i class='bx bx-broadcast' style="color: #EC4899;"></i> WebSocket</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cv-section" style="margin-top: 40px;">
+                <div class="cv-grid">
+                    <div class="cv-column">
+                        <h4 style="color: #EC4899; margin-bottom: 20px;">Education</h4>
+                        <div class="cv-timeline">
+                            <div class="cv-item">
+                                <span class="cv-year">2024 - Running</span>
+                                <h5>MSc IT</h5>
+                                <p style="color: #EC4899; font-size: 0.9rem;">NCIT College, Nepal</p>
+                                <p style="color: #9CA3AF; font-size: 0.85rem;">Advanced studies in information technology and software systems.</p>
+                            </div>
+                            <div class="cv-item">
+                                <span class="cv-year">2019 - 2023</span>
+                                <h5>Bachelor in IT</h5>
+                                <p style="color: #EC4899; font-size: 0.9rem;">University, Nepal</p>
+                                <p style="color: #9CA3AF; font-size: 0.85rem;">Focused on software engineering and database systems.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cv-column">
+                        <h4 style="color: #EC4899; margin-bottom: 20px;">Certifications</h4>
+                        <div class="cv-timeline">
+                            <div class="cv-item">
+                                <span class="cv-year">2024</span>
+                                <h5>Advanced Python Programming</h5>
+                                <p style="color: #9CA3AF; font-size: 0.85rem;">Online Course</p>
+                            </div>
+                            <div class="cv-item">
+                                <span class="cv-year">2022</span>
+                                <h5>Django Advanced</h5>
+                                <p style="color: #9CA3AF; font-size: 0.85rem;">Online Course</p>
+                            </div>
+                            <div class="cv-item">
+                                <span class="cv-year">2021</span>
+                                <h5>Responsive Web Designing</h5>
+                                <p style="color: #9CA3AF; font-size: 0.85rem;">Online Course</p>
+                            </div>
+                            <div class="cv-item">
+                                <span class="cv-year">2021</span>
+                                <h5>React Professional</h5>
+                                <p style="color: #9CA3AF; font-size: 0.85rem;">Online Course</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="projects" class="tab-content" style="display:none;">            
+            <div style="display: flex; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; padding-left: 20px; padding-right: 20px;">
+                <button onclick="filterProjects('all')" class="filter-btn active" data-filter="all">All</button>
+                <button onclick="filterProjects('personal')" class="filter-btn" data-filter="personal">Personal</button>
+                <button onclick="filterProjects('web')" class="filter-btn" data-filter="web">Web</button>
+                <button onclick="filterProjects('mobile')" class="filter-btn" data-filter="mobile">Mobile</button>
+            </div>
+            
+            <div class="project-list" id="projectList"></div>
+        </div>
+
+        <div id="project-detail" class="tab-content" style="display:none;">
+            <button onclick="backToProjects()" style="background: #1F1F23; color: #EC4899; border: none; padding: 8px 16px; border-radius: 8px; cursor: pointer; margin-bottom: 20px; display: flex; align-items: center; gap: 8px;">
+                <i class='bx bx-arrow-back'></i> Back to Projects
+            </button>
+            <div id="detail-content"></div>
+        </div>
+
+    </div>
+
+    <!-- Chatbot -->
+    <div class="chatbot-container">
+        <button class="chatbot-button" onclick="toggleChatbot()">
+            <i class='bx bx-message-dots'></i>
+        </button>
+        <div class="chatbot-window" id="chatbotWindow">
+            <div class="chatbot-header">
+                <h3>Chat with Suraj</h3>
+                <button class="chatbot-close" onclick="toggleChatbot()">
+                    <i class='bx bx-x'></i>
+                </button>
+            </div>
+            <div class="chatbot-messages" id="chatbotMessages">
+                <div class="chatbot-message bot">Hi! I'm Suraj's AI assistant. Ask me anything about his projects, skills, or experience!</div>
+            </div>
+            <div class="chatbot-input-area">
+                <input type="text" class="chatbot-input" id="chatbotInput" placeholder="Type your message..." onkeypress="if(event.key==='Enter') sendMessage()">
+                <button class="chatbot-send" onclick="sendMessage()">
+                    <i class='bx bx-send'></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+    <script>
+        const allProjects = [
+            { id: 'gwp', name: 'Government with People WebApp', type: 'company', platform: 'web', url: 'https://gwp.nirc.com.np', tech: ['Java 40%', 'Grails 35%', 'SQL 15%', 'API 10%'], role: 'Full Stack Developer', desc: 'Government web application for public services and citizen engagement.', credentials: { username: 'p.demo', password: '@dminP@ssw0rd' }, img: 'static/gwp.png' },
+            { id: 'hms', name: 'Hospital Management System', type: 'company', platform: 'web', url: 'https://hms.nirc.com.np', tech: ['Django 45%', 'React 25%', 'PostgreSQL 20%', 'API 10%'], role: 'Core Designer & Lead Developer', desc: 'Integrated HMS with IMIS, HIMI, and DIS2 for comprehensive hospital operations.', credentials: { username: 'demo_user', password: 'demo' }, img: 'static/hms.png' },
+            { id: 'rakmina', name: 'Rakmina Job Portal', type: 'company', platform: 'web', url: 'https://rakmina.lt/', tech: ['Next.js 40%', 'Django 40%', 'PostgreSQL 20%'], role: 'Lead Full Stack Developer', desc: 'Complete CMS and job portal for European client with advanced features.', credentials: { note: 'Signup available' }, img: 'static/rakmina.png' },
+            { id: 'ktmpost', name: 'KTM Post Newspaper', type: 'company', platform: 'web', url: 'https://ktmpost.com/', tech: ['React 45%', 'Django 35%', 'MySQL 20%'], role: 'Lead Developer', desc: 'Digital newspaper platform with content management and publishing system.', img: 'static/ktmpost.png' },
+            { id: 'ezeyway-web', name: 'Ezeyway E-commerce (Web)', type: 'personal', platform: 'web', url: 'https://ezeyway.com/', tech: ['React 50%', 'Django 40%', 'PostgreSQL 10%'], role: 'Solo Developer', desc: 'E-commerce platform with call and messaging features.', img: 'static/ezeyway.png' },
+            { id: 'ezeyway-app', name: 'Ezeyway E-commerce (Mobile)', type: 'personal', platform: 'mobile', url: 'https://ezeyway.com', tech: ['Flutter 70%', 'Django 30%'], role: 'Solo Developer', desc: 'Mobile app for e-commerce with full shopping features.', img: 'static/ezeyway.png' },
+            { id: 'brandwave', name: 'Brandwave Marketing', type: 'personal', platform: 'web', url: 'https://brandwave.com', tech: ['HTML5 60%', 'CSS3 30%', 'JavaScript 10%'], role: 'Solo Developer', desc: 'Social media marketing agency website.', img: 'static/brandwave.png' },
+            { id: 'biratmultiple', name: 'Birat Multiple College', type: 'personal', platform: 'web', url: 'https://biratmultiplecollege.edu.np', tech: ['React 50%', 'Django 40%', 'MySQL 10%'], role: 'Full Stack Developer', desc: 'TU affiliated college website with student portal.', img: 'static/biratmultiplecollege.png' },
+            { id: 'vgcollege', name: 'VG College', type: 'personal', platform: 'web', url: 'https://vgcollege.edu.np', tech: ['React 50%', 'Django 40%', 'MySQL 10%'], role: 'Full Stack Developer', desc: 'Bachelor level college website with course management.', img: 'static/vgcollege.png' },
+            { id: 'biratshiksha', name: 'Birat Shiksha Niketan School', type: 'personal', platform: 'web', url: 'https://biratshikshaniketan.edu.np', tech: ['React 50%', 'Django 40%', 'MySQL 10%'], role: 'Full Stack Developer', desc: 'School website with student and parent portal.', img: 'static/biratshikshaniketan.png' },
+            { id: 'aarambha', name: 'Aarambha Foundation', type: 'personal', platform: 'web', url: 'https://aarambhafoundation.com', tech: ['React 55%', 'Django 35%', 'PostgreSQL 10%'], role: 'Full Stack Developer', desc: 'NGO foundation website with donation system.', img: 'static/aarambha.png' },
+            { id: 'neom', name: 'Neom Diaper Company', type: 'personal', platform: 'web', url: 'https://neom.com', tech: ['React 60%', 'Django 30%', 'MySQL 10%'], role: 'Full Stack Developer', desc: 'E-commerce website for diaper products.', img: 'static/neom.png' },
+            { id: 'school-mgmt', name: 'School Management Software', type: 'personal', platform: 'web', url: 'https://school.nirc.com.np', tech: ['Django 50%', 'React 30%', 'PostgreSQL 20%'], role: 'Lead Developer', desc: 'Complete school management system with attendance, grades, and reports.', img: 'static/schoolmanagemnt.png' },
+            { id: 'gadisewa', name: 'Gadi Sewa Garage Management', type: 'personal', platform: 'web', url: 'https://gadisewa.com', tech: ['Django 45%', 'React 35%', 'PostgreSQL 20%'], role: 'Full Stack Developer', desc: 'Garage management software for vehicle servicing and repairs.', img: 'static/gadisewa.png' },
+            { id: 'kic', name: 'KIC Education Consultancy', type: 'personal', platform: 'web', url: 'https://kiceducation.edu.np', tech: ['React 55%', 'Django 35%', 'MySQL 10%'], role: 'Full Stack Developer', desc: 'Educational consultancy website with student application system.', img: 'static/kiceducation.png' }
+        ];
+
+        let currentFilter = 'all';
+
+        function renderProjects(filter = 'all') {
+            const projectList = document.getElementById('projectList');
+            let filtered;
+            if (filter === 'all') {
+                filtered = allProjects;
+            } else if (filter === 'web' || filter === 'mobile') {
+                filtered = allProjects.filter(p => p.platform === filter);
+            } else {
+                filtered = allProjects.filter(p => p.type === filter);
+            }
+            
+            projectList.innerHTML = filtered.map(project => `
+                <div class="project-item" onclick="showProjectDetail('${project.id}')" data-type="${project.type}">
+                    <div class="project-img">
+                        <img src="${project.img || 'suraj.jpg'}" alt="${project.name}">
+                        <i class='bx bx-show project-img-icon'></i>
+                    </div>
+                    <div class="project-info">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                            <h3>${project.name}</h3>
+                            <span class="project-type ${project.type}">${project.type === 'company' ? 'Company' : 'Personal'}</span>
+                        </div>
+                        <p style="color: #9CA3AF; font-size: 0.9rem; margin-bottom: 12px;">${project.desc}</p>
+                        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px;">
+                            ${project.tech.map(t => `<span class="tech-badge">${t}</span>`).join('')}
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap;">
+                            <a href="${project.url}" target="_blank" onclick="event.stopPropagation()" style="background: #EC4899; color: #fff; padding: 6px 14px; border-radius: 8px; text-decoration: none; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 6px;">
+                                <i class='bx bx-link-external'></i> Visit
+                            </a>
+                            <div style="display: flex; align-items: center; gap: 15px;">
+                                ${project.credentials ? `<small style="color: #6B7280; font-size: 0.7rem;">${project.credentials.username ? `user: ${project.credentials.username}` : ''}${project.credentials.username && project.credentials.password ? ' | ' : ''}${project.credentials.password ? `pass: ${project.credentials.password}` : ''}${project.credentials.note ? project.credentials.note : ''}</small>` : ''}
+                                <small style="color: #9CA3AF; font-size: 0.75rem;">${project.role}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterProjects(type) {
+            currentFilter = type;
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.filter === type) btn.classList.add('active');
+            });
+            renderProjects(type);
+        }
+        function showTab(tabName) {
+            const tabs = document.querySelectorAll('.tab');
+            const contents = document.querySelectorAll('.tab-content');
+            
+            tabs.forEach(tab => tab.classList.remove('active'));
+            contents.forEach(content => content.style.display = 'none');
+            
+            event.target.classList.add('active');
+            document.getElementById(tabName).style.display = 'block';
+            
+            if (tabName === 'projects') {
+                renderProjects(currentFilter);
+            }
+        }
+
+        function showProjectDetail(projectId) {
+            const project = allProjects.find(p => p.id === projectId);
+            if (!project) return;
+            
+            const detailContent = `
+                <div class="detail-section">
+                    <div class="detail-header">
+                        <h2 style="font-size: 2rem; margin: 0;">${project.name}</h2>
+                        <span class="project-type ${project.type}">${project.type === 'company' ? 'Company' : 'Personal'}</span>
+                    </div>
+                    <div class="detail-img">
+                        <img src="${project.img || 'suraj.jpg'}" alt="${project.name}">
+                    </div>
+                    <p style="color: #9CA3AF; font-size: 1rem; line-height: 1.8; margin-bottom: 20px;">${project.desc}</p>
+                    
+                    ${project.credentials ? `<div style="background: #1F1F23; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                        <h4 style="color: #EC4899; margin-bottom: 10px; font-size: 1rem;">Demo Credentials</h4>
+                        ${project.credentials.username ? `<div style="color: #9CA3AF; margin-bottom: 5px;"><strong style="color: #EC4899;">Username:</strong> ${project.credentials.username}</div>` : ''}
+                        ${project.credentials.password ? `<div style="color: #9CA3AF; margin-bottom: 5px;"><strong style="color: #EC4899;">Password:</strong> ${project.credentials.password}</div>` : ''}
+                        ${project.credentials.note ? `<div style="color: #10B981; margin-top: 10px;"><i class='bx bx-info-circle'></i> ${project.credentials.note}</div>` : ''}
+                    </div>` : ''}
+                    
+                    <div style="display: flex; gap: 20px; margin-bottom: 30px; flex-wrap: wrap;">
+                        <div>
+                            <strong style="color: #EC4899;">Role:</strong>
+                            <span style="color: #9CA3AF;"> ${project.role}</span>
+                        </div>
+                        <div>
+                            <strong style="color: #EC4899;">URL:</strong>
+                            <a href="${project.url}" target="_blank" style="color: #EC4899; text-decoration: none;"> ${project.url}</a>
+                        </div>
+                    </div>
+
+                    <h3 style="color: #EC4899; margin-bottom: 15px;">Technologies Used</h3>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 30px;">
+                        ${project.tech.map(t => `<span class="tech-badge">${t}</span>`).join('')}
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+                        <a href="${project.url}" target="_blank" class="project-type ${project.type}" style="text-decoration: none; padding: 10px 20px; display: inline-flex; align-items: center; gap: 8px;">
+                            <i class='bx bx-link-external'></i> Visit Website
+                        </a>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('detail-content').innerHTML = detailContent;
+            document.getElementById('projects').style.display = 'none';
+            document.getElementById('project-detail').style.display = 'block';
+        }
+
+        function backToProjects() {
+            document.getElementById('project-detail').style.display = 'none';
+            document.getElementById('projects').style.display = 'block';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            renderProjects('all');
+            
+            const birthDate = new Date('2001-10-26');
+            const ageSpan = document.getElementById('age');
+            
+            function calculateAge(birthDate) {
+                const today = new Date();
+                let age = today.getFullYear() - birthDate.getFullYear();
+                const monthDiff = today.getMonth() - birthDate.getMonth();
+                
+                if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+                    age--;
+                }
+                
+                return age;
+            }
+            
+            if (ageSpan) {
+                ageSpan.textContent = calculateAge(birthDate);
+            }
+        });
+
+        // Chatbot functionality
+        function toggleChatbot() {
+            const chatWindow = document.getElementById('chatbotWindow');
+            chatWindow.classList.toggle('active');
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatbotInput');
+            const message = input.value.trim().toLowerCase();
+            if (!message) return;
+
+            addMessage(input.value.trim(), 'user');
+            input.value = '';
+
+            setTimeout(() => {
+                const response = getBotResponse(message);
+                addMessage(response, 'bot');
+            }, 500);
+        }
+
+        function getBotResponse(msg) {
+            // Greetings
+            if (msg.match(/\b(hi|hello|hey|greetings)\b/)) {
+                return "Hello! I'm Suraj's assistant. I can tell you about his projects, skills, experience, and education. What would you like to know?";
+            }
+            
+            // Projects
+            if (msg.match(/\b(project|work|portfolio|built|developed)\b/)) {
+                if (msg.includes('hospital') || msg.includes('hms')) {
+                    return "Suraj built a Hospital Management System (hms.nirc.com.np) integrated with IMIS, HIMI, and DIS2. He was the Core Designer & Lead Developer using Django, React, and PostgreSQL. Demo credentials: username 'demo_user', password 'demo'.";
+                }
+                if (msg.includes('government') || msg.includes('gwp')) {
+                    return "Suraj developed the Government with People WebApp (gwp.nirc.com.np) using Java, Grails, and SQL. Demo credentials: username 'p.demo', password '@dminP@ssw0rd'.";
+                }
+                if (msg.includes('job') || msg.includes('rakmina')) {
+                    return "Suraj created Rakmina Job Portal (rakmina.lt) for a European client as Lead Full Stack Developer using Next.js, Django, and PostgreSQL. Signup is available!";
+                }
+                if (msg.includes('newspaper') || msg.includes('ktm')) {
+                    return "Suraj built KTM Post Newspaper (ktmpost.com), a digital newspaper platform with content management using React, Django, and MySQL.";
+                }
+                if (msg.includes('ecommerce') || msg.includes('ezeyway')) {
+                    return "Suraj created Ezeyway E-commerce platform (ezeyway.com) with both web (React, Django) and mobile app (Flutter) featuring call and messaging.";
+                }
+                if (msg.includes('school')) {
+                    return "Suraj built multiple educational platforms: School Management Software (school.nirc.com.np), Birat Shiksha Niketan School, Birat Multiple College, VG College, and KIC Education Consultancy websites.";
+                }
+                return "Suraj has worked on 15+ projects including: Hospital Management System, Government WebApp, Rakmina Job Portal, KTM Post Newspaper, Ezeyway E-commerce, and multiple educational websites. Which one interests you?";
+            }
+            
+            // Skills
+            if (msg.match(/\b(skill|technology|tech|stack|language|framework)\b/)) {
+                if (msg.includes('language')) {
+                    return "Suraj's programming languages: Python, Java, JavaScript, TypeScript, HTML5, CSS3, and Dart.";
+                }
+                if (msg.includes('framework')) {
+                    return "Suraj works with: Django, Django REST Framework, Grails, React, Flutter, Tailwind CSS, Node.js, and Express.js.";
+                }
+                if (msg.includes('database') || msg.includes('db')) {
+                    return "Suraj uses PostgreSQL, MariaDB, and MongoDB for database management.";
+                }
+                return "Suraj specializes in Django, Django REST Framework, React, Java, and Grails. He also works with Flutter, Node.js, PostgreSQL, and many other technologies. What specific skill are you interested in?";
+            }
+            
+            // Experience
+            if (msg.match(/\b(experience|work|job|company|career)\b/)) {
+                if (msg.includes('current') || msg.includes('now') || msg.includes('nirc')) {
+                    return "Suraj is currently a Senior Developer at NIRC (2023-Present), building hospital management systems and government reporting platforms with Django and PostgreSQL.";
+                }
+                if (msg.includes('previous') || msg.includes('brandwave')) {
+                    return "Suraj was a Senior Developer at Brandwave (2021-2023), where he led the technical team and architected scalable solutions for clients.";
+                }
+                return "Suraj has 3+ years of experience. Currently Senior Developer at NIRC (2023-Present) and previously at Brandwave (2021-2023). He specializes in Django, React, and building large-scale systems.";
+            }
+            
+            // Education
+            if (msg.match(/\b(education|study|degree|college|university)\b/)) {
+                return "Suraj is currently pursuing MSc IT at NCIT College (2024-Running) and completed his Bachelor in IT (2019-2023) focused on software engineering and database systems.";
+            }
+            
+            // Certifications
+            if (msg.match(/\b(certification|certificate|course)\b/)) {
+                return "Suraj's certifications: Advanced Python Programming (2024), Django Advanced (2022), Responsive Web Designing (2021), and React Professional (2021).";
+            }
+            
+            // Contact
+            if (msg.match(/\b(contact|email|reach|hire|available)\b/)) {
+                return "You can connect with Suraj through LinkedIn, GitHub, or Facebook. Check the social icons on his profile! He's available for freelance and full-time opportunities.";
+            }
+            
+            // Location
+            if (msg.match(/\b(location|where|from|live)\b/)) {
+                return "Suraj is a Full-Stack Developer based in Nepal.";
+            }
+            
+            // Specific tech questions
+            if (msg.includes('django')) {
+                return "Suraj is highly experienced with Django and Django REST Framework. He's built hospital management systems, government platforms, and multiple web applications using Django.";
+            }
+            if (msg.includes('react')) {
+                return "Suraj uses React extensively for frontend development. He's built the KTM Post Newspaper, Ezeyway E-commerce, and multiple educational websites with React.";
+            }
+            if (msg.includes('flutter')) {
+                return "Suraj develops mobile applications using Flutter. He built the Ezeyway E-commerce mobile app with Flutter.";
+            }
+            if (msg.includes('java') || msg.includes('grails')) {
+                return "Suraj works with Java and Grails framework. He built the Government with People WebApp using Java and Grails.";
+            }
+            
+            // How many projects
+            if (msg.match(/\b(how many|number of)\b/) && msg.includes('project')) {
+                return "Suraj has completed 15+ projects including company projects at NIRC and personal projects. These range from hospital management systems to e-commerce platforms and educational websites.";
+            }
+            
+            // Best project
+            if (msg.match(/\b(best|favorite|top|main)\b/) && msg.includes('project')) {
+                return "Suraj's notable projects include the Hospital Management System (integrated with IMIS, HIMI, DIS2), Government with People WebApp, and Rakmina Job Portal for European clients. Each showcases his full-stack expertise!";
+            }
+            
+            // Thanks
+            if (msg.match(/\b(thank|thanks)\b/)) {
+                return "You're welcome! Feel free to ask anything else about Suraj's work, skills, or experience!";
+            }
+            
+            // Default response
+            return "I can help you learn about Suraj's projects, skills, experience, education, and certifications. Try asking about: 'What projects has Suraj built?', 'What are his skills?', 'Tell me about his experience', or ask about specific technologies like Django, React, or Flutter!";
+        }
+
+        function addMessage(text, sender, isTyping = false) {
+            const messagesDiv = document.getElementById('chatbotMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `chatbot-message ${sender}`;
+            if (isTyping) messageDiv.id = 'typing-indicator';
+            messageDiv.textContent = text;
+            messagesDiv.appendChild(messageDiv);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+    </script>
+</body>
+</html>
